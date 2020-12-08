@@ -1,0 +1,15 @@
+﻿@model IEnumerable<PlayMusic.Models.Genre>
+<ul class="nav navbar-nav " style="background-color:#d9534f">
+  
+    <!-- Dropdown level 2 -->
+    @foreach (var genre in Model)
+    {
+        <li class="dropdown">
+            <a href="@Url.Action("GenreAlbums", "Genres",new { id = genre.GenreId, name = genre.Name })">@genre.Name</a>
+
+            @*@Html.ActionLink(genre.Name, "Details", "Genres", new { id = genre.GenreId, name = genre.Name }, new { area = "" })*@
+
+        </li>
+    }
+</ul>
+

@@ -1,0 +1,80 @@
+﻿@model PlayMusic.Models.GenreAlbums
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body style="margin-top:65px; ">
+
+    <div style="background-color:white;height:1200px">
+        <div style="margin-left:15px;background-color:white">
+            <h4>  @Html.DisplayFor(model => model.genredetail.Name) :</h4>
+
+            <dl>
+
+                <dd>
+                    @Html.DisplayFor(model => model.genredetail.Description)
+                </dd>
+
+            </dl>
+        </div>
+
+        @using (Html.BeginForm("Details", "Genres", FormMethod.Get,
+        new { enctype = "multipart/form-data" }))
+        {
+            //the following are search options
+            <span>Genre  Name:</span> @Html.TextBox("search")
+          
+    
+            <input type="submit" value="Search" />
+
+
+            @*<p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.GenreId }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>*@
+            <div class="grid">
+                @foreach (var album in Model.genrelist)
+                {
+
+
+
+                    <div class="col-sm-3 col-lg-3 col-lg-3 "
+                         onclick="location.href='/Albums/AlbumDetails/@album.AlbumId';">
+                        <div class="thumbnail">
+                            <img src="@album.AlbumArtUrl">
+
+                            <div style="width:100%;height:80px;">
+                                <h6>  <b>Artist :</b> @album.Artist.Name</h6>
+                                @Html.ActionLink(@album.Title, "AlbumDetails", "Albums", new { id = @album.AlbumId }, new { area = "" })
+
+                                <div>
+
+                                    <h5 class="pull-left" style="margin-right:15px"><b>@album.Price.ToString("c")</b></h5>
+                                    <div class="pull-right" style="margin-top:7px">
+
+
+
+                                        @Html.ActionLink(" ", "AddToCart", "ShoppingCart", new { id = @album.AlbumId }, new { @class = "glyphicon glyphicon-shopping-cart" })
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                }
+
+            </div>
+        }
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+﻿@model PlayMusic.Models.ArtistsAlbums
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div style="background-color:white;height:1200px">
+        <h4>Artist</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+               Artist Name: 
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.artistdetail.Name)
+            </dd>
+
+        </dl>
+
+
+        <div class="grid">
+            @foreach (var album in Model.artistlist.Albums.Take(10))
+            {
+
+
+
+                <div class="col-sm-3 col-lg-3 col-lg-3 "
+                     onclick="location.href='/Albums/AlbumDetails/@album.AlbumId';">
+                    <div class="thumbnail">
+                        <img src="@album.AlbumArtUrl">
+
+                        <div style="width:100%;height:80px;">
+                            <h6>  <b>Artist :</b> @album.Artist.Name</h6>
+                            @Html.ActionLink(@album.Title, "AlbumDetails", "Albums", new { id = @album.AlbumId }, new { area = "" })
+
+                            <div>
+
+                                <h5 class="pull-left" style="margin-right:15px"><b>@album.Price.ToString("c")</b></h5>
+                                <div class="pull-right" style="margin-top:7px">
+
+
+
+                                    @Html.ActionLink(" ", "AddToCart", "ShoppingCart", new { id = @album.AlbumId }, new { @class = "glyphicon glyphicon-shopping-cart" })
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            }
+
+        </div>
+    </div>
+    @*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.artistdetail.ArtistId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@
+
+
+  
+</body>
+</html>

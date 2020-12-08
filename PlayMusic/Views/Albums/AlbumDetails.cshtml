@@ -1,0 +1,58 @@
+﻿@model PlayMusic.Models.Album
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body >
+    <div style="margin-top:50px;display:flex;flex-direction:row;height:280px">
+        <div style="width:55%;">
+            
+            <img style="width:100%;"  src="@Html.DisplayFor(model => model.AlbumArtUrl)">
+            <hr />
+        </div>
+        <div class="dl-horizontal" style="width:100% ;padding-left:15px;">
+
+            <h2 style="text-align:center;">@Html.DisplayFor(model => model.Title)</h2>
+            <dl class="dl-horizontal" style="margin-top:45px">
+                <dt style="text-align: left;margin-bottom:2%;">Artist Name :</dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Artist.Name)
+                </dd>
+
+                <dt style="text-align: left;margin-bottom:2%">Genre Name : </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Genre.Name)
+                </dd>
+
+                <dt style="text-align: left;margin-bottom:2%">Price : </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+            </dl>
+
+
+
+            <div class="pull-right" style="margin-right:5%;margin-bottom:45px">
+
+                <div class="add-to-cart" onclick="location.href='/ShoppingCart/AddToCart/@Html.DisplayFor(model => model.AlbumId)';">
+                    <p style="align-self:center;cursor:pointer"><b> Add to Cart</b></p> 
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    @*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.AlbumId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@
+</body>
+</html>

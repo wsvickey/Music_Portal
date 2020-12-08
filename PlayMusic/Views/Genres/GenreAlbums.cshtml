@@ -1,0 +1,70 @@
+﻿@model PlayMusic.Models.GenreAlbums
+@{
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<body style=" ">
+
+    <div style="background-color:white">
+        <div style="margin-left:15px;background-color:white">
+            <h4>  @Html.DisplayFor(model => model.genredetail.Name) :</h4>
+
+            <dl></dl>
+        </div>
+
+        @*<p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.GenreId }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>*@
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("Title")
+                </th>
+                <th>
+                    @Html.DisplayName("Price")
+                </th>
+                <th>
+                    @Html.DisplayName("Image")
+                </th>
+                <th>
+                    @Html.DisplayName("Artist Name")
+                </th>
+             
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.genrelist)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AlbumArtUrl)
+                    </td>
+                    <td style="width:15%">
+                        @Html.DisplayFor(modelItem => item.Artist.Name)
+                    </td>
+                 
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.AlbumId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.AlbumId })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+     
+
+    </div>
+</body>
+</html>

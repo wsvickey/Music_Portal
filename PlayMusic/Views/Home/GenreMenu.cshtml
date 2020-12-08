@@ -1,0 +1,21 @@
+﻿@model IEnumerable<PlayMusic.Models.Genre>
+<li class="dropdown">
+    <a asp-controller="Album"
+       asp-action="Index"
+       class="dropdown-toggle" data-toggle="dropdown">
+        Genre 
+        <b class="caret"></b>
+    </a>
+
+    <ul class="dropdown-menu" style="background-color:#d9534f">
+        @foreach (var genre in Model)
+        {
+        <li>
+    
+            @Html.ActionLink(genre.Name, "Details", "Genres", new { id = genre.GenreId, name = genre.Name }, new { area = "" })
+
+        </li>
+        }
+
+    </ul>
+</li>
